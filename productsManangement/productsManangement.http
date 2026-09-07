@@ -1,0 +1,29 @@
+@productsManangement_HostAddress = http://localhost:5076
+
+GET {{productsManangement_HostAddress}}/api/products/
+Accept: application/json
+
+### get prodcut by id
+
+
+GET {{productsManangement_HostAddress}}/api/products/1
+Accept: application/json
+
+### update product 
+
+
+PUT {{productsManangement_HostAddress}}/api/products/2
+Accept: application/json
+Content-Type: application/json
+
+{
+ "id": 2,
+  "name": "Product 2",
+  "description": "Description of Product 2",
+  "price": 15.99
+  }
+
+
+### delete
+DELETE {{productsManangement_HostAddress}}/api/products/2
+Accept: application/json
