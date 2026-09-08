@@ -28,7 +28,6 @@ namespace productsManangement.Controllers
 
         public IActionResult GetProducts()
         {
-            // Sample data for demonstration purposes
             
             return Ok(service.GetAllProducts());
         }

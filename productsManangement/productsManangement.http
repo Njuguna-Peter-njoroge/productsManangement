@@ -1,12 +1,6 @@
-# 🚀 STEP 1: CHANGE THIS PORT (8090) to match your active browser address bar!
-# (Example: http://localhost:5076 if that's what Visual Studio opened)
-@productsManangement_HostAddress = http://localhost:8090
+@productsManangement_HostAddress = http://localhost:5076
 
-### 1. Get all products
-GET {{productsManangement_HostAddress}}/api/products
-Accept: application/json
-
-### 2. Create a product (Run this FIRST to seed your database)
+### 1. Create a new product (RUN THIS FIRST to seed your local DB)
 POST {{productsManangement_HostAddress}}/api/products
 Accept: application/json
 Content-Type: application/json
@@ -16,6 +10,10 @@ Content-Type: application/json
   "description": "Description of Product 3",
   "price": 15.00
 }
+
+### 2. Get all products
+GET {{productsManangement_HostAddress}}/api/products
+Accept: application/json
 
 ### 3. Get product by id
 GET {{productsManangement_HostAddress}}/api/products/1

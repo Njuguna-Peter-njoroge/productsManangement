@@ -1,34 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using productsManangement.Data;
+﻿using productsManangement.Data;
 using productsManangement.Dtos;
 using productsManangement.Models;
 
 namespace productsManangement.Services
 {
+
+
     public class productService : IProductService
     {
         private readonly appDbContext context;
-        private readonly ILogger<productService> _logger;
-
-        public productService(appDbContext AppDbContext, ILogger<productService> logger)
+        public productService(appDbContext AppDbContext)
         {
             context = AppDbContext;
-            _logger = logger;
         }
+
 
         public productResponse AddProduct(product_requirement productRequest)
         {
-            try
-            {
-                var conn = context.Database.GetDbConnection();
-                _logger.LogInformation("Db connection string (redact credentials): {Conn}", conn.ConnectionString);
-                _logger.LogInformation("Database can connect: {CanConnect}", context.Database.CanConnect());
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Failed to read DB connection or check connectivity.");
-            }
 
             var product = new Product
             {
@@ -37,7 +25,6 @@ namespace productsManangement.Services
                 Description = productRequest.Description,
                 Price = productRequest.Price
             };
-
             var newproduct = context.Products.Add(product);
             context.SaveChanges();
 
@@ -49,22 +36,27 @@ namespace productsManangement.Services
                 Price = newproduct.Entity.Price
             };
 
-            return response;
+           return response;
+
+
         }
 
         public void DeleteProduct(int id)
         {
-            var product = context.Products.Find(id);
-            if (product != null)
+
+var     product = context.Products.Find(id);
+            if(product !=null)
             {
                 context.Products.Remove(product);
                 context.SaveChanges();
             }
+
         }
 
         public IEnumerable<Product> GetAllProducts()
         {
             var products = context.Products.ToList();
+
 
             var response = products.Select(p => new productResponse
             {
@@ -72,17 +64,23 @@ namespace productsManangement.Services
                 Name = p.Name,
                 Description = p.Description,
                 Price = p.Price
+
+
             });
 
-            return products;
+
+
+            return products;    
+
         }
 
         public productResponse? GetProductById(int id)
         {
+
             var product = context.Products.FirstOrDefault(p => p.Id == id);
             if (product == null) return null;
 
-            var response = new productResponse
+            var response = product == null ? null   : new productResponse
             {
                 Id = product.Id,
                 Name = product.Name,
