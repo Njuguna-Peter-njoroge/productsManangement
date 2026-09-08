@@ -1,0 +1,46 @@
+# services:
+#   productsmanangement:
+#     image: ${DOCKER_REGISTRY-}productsmanangement
+#     build:
+#       context: .
+#       dockerfile: productsManangement/Dockerfile
+
+
+# services:
+#   ms-sql-server:
+#     image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+#     environment:
+#       ACCEPT_EULA: "Y"
+#       SA_PASSWORD: "Pa55w0rd2021"
+#       MSSQL_PID: Express
+#     ports:
+#       - "1433:1433"
+#   productsmanangement:
+#     build: 
+#      context: .
+#      dockerfile: ProductManagement.API/Dockerfile
+#     ports: 
+#       - "8090:80"
+#     depends_on:
+#       - ms-sql-server
+
+
+services:
+  ms-sql-server:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Pa55w0rd2021"
+      MSSQL_PID: Express
+    ports:
+      - "1433:1433"  # 🚀 Fixed: Placed outside environment blocks cleanly
+
+  productsmanangement:
+    build: 
+      context: .
+      dockerfile: productsManangement/Dockerfile
+    ports: 
+      - "8090:8080"
+    depends_on:
+      - ms-sql-server
+
