@@ -1,12 +1,19 @@
 services:
   ms-sql-server:
-    image: ://microsoft.com
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: "Pa55w0rd2021"
+      SA_PASSWORD: "Pa5S5w0rd2021"
       MSSQL_PID: Express
     ports:
       - "1433:1433"
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Pa5S5w0rd2021", "-Q", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - mssql-data:/var/opt/mssql
 
   productsmanangement:
     build:
@@ -15,4 +22,8 @@ services:
     ports:
       - "8090:8080"
     depends_on:
-      - ms-sql-server
+      ms-sql-server:
+        condition: service_healthy
+
+volumes:
+  mssql-data:
