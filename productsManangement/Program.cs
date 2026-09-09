@@ -22,6 +22,11 @@ builder.Services.AddDbContext<appDbContext>(
 builder.Services.AddScoped<IProductService, productService>();
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    scope.ServiceProvider.GetRequiredService<appDbContext>().Database.Migrate();
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
