@@ -1,4 +1,4 @@
-@productsManangement_HostAddress = http://localhost:5076
+@productsManangement_HostAddress = http://localhost:8090
 
 ### 1. Create a new product (RUN THIS FIRST to seed your local DB)
 POST {{productsManangement_HostAddress}}/api/products
