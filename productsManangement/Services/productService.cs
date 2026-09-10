@@ -53,7 +53,7 @@ var     product = context.Products.Find(id);
 
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<productResponse> GetAllProducts()
         {
             var products = context.Products.ToList();
 
@@ -70,7 +70,7 @@ var     product = context.Products.Find(id);
 
 
 
-            return products;    
+            return response;   
 
         }
 
@@ -91,7 +91,7 @@ var     product = context.Products.Find(id);
             return response;
         }
 
-        public void UpdateProduct(Product product)
+        public Product? UpdateProduct(int id, Product product)
         {
             var existingProduct = context.Products.FirstOrDefault(p => p.Id == product.Id);
             if (existingProduct != null)
@@ -101,11 +101,14 @@ var     product = context.Products.Find(id);
                 existingProduct.Price = product.Price;
                 context.SaveChanges();
             }
+
+            return existingProduct;
+
+
         }
 
-        public void UpdateProduct(int id, Product product)
-        {
-            throw new NotImplementedException();
-        }
+
+                 
+      
     }
 }

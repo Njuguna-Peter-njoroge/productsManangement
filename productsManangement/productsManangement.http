@@ -11,12 +11,27 @@ Content-Type: application/json
   "price": 15.00
 }
 
+
+### 1. Create a new product (RUN THIS FIRST to seed your local DB)
+POST {{productsManangement_HostAddress}}/api/products
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": 4,
+  "name": "Hp laptop",
+  "description": "Description of Product 3",
+  "price": 15.00
+}
+
+
+
 ### 2. Get all products
 GET {{productsManangement_HostAddress}}/api/products
 Accept: application/json
 
 ### 3. Get product by id
-GET {{productsManangement_HostAddress}}/api/products/1
+GET {{productsManangement_HostAddress}}/api/products/3
 Accept: application/json
 
 ### 4. Update product 
@@ -25,6 +40,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
+  "id" : 3,
   "name": "Updated Product Name",
   "description": "Updated Description",
   "price": 19.99

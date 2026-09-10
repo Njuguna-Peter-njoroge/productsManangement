@@ -5,7 +5,7 @@ namespace productsManangement.Services
 {
     public interface IProductService
     {
-        IEnumerable<Product> GetAllProducts();
+        IEnumerable<productResponse> GetAllProducts();
         productResponse? GetProductById(int id);
 
         productResponse AddProduct(product_requirement product);
