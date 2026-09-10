@@ -1,4 +1,6 @@
 # .Net productsmanagement Api
+##
+
 
 here is a detailed guide on my productsManagement project 
 
@@ -66,6 +68,13 @@ volumes:                  # named volumes referenced above, declared once
 
 networks:                 # optional — Compose creates a default one for you
   ...
+
+  ```
+
+ #### sample app.settings.json for your project
+
+  ```
+  Connection string: Server=ms-sql-server,1433;Database=YourDb;User Id=sa;Password=Pa5S5w0rd2021;TrustServerCertificate=True;Encrypt=False
 
   ```
 
