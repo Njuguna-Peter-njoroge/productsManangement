@@ -71,6 +71,6 @@ networks:                 # optional — Compose creates a default one for you
 
 
 
-### you can either use a command to start dokcer or choose to open the desktop dokcer application and wait until you see `engine running`
+#### you can either use a command to start dokcer or choose to open the desktop dokcer application and wait until you see `engine running`
 
-### for more info about docker you can check this [repository](https://github.com/Njuguna-Peter-njoroge/productsManangement/blob/master/docker.md)
+#### for more info about docker you can check this [repository](https://github.com/Njuguna-Peter-njoroge/productsManangement/blob/master/docker.md)
